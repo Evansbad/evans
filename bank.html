@@ -490,7 +490,247 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 
     </div>
 
-<script src="bank.js"></script>
+<script> 
+function showRegister() {
+    document.getElementById("loginPage").style.display = "none";
+    document.getElementById("registerPage").style.display = "block";
+}
+
+function showLogin() {
+    document.getElementById("registerPage").style.display = "none";
+    document.getElementById("loginPage").style.display = "block";
+}
+
+function login() {
+
+    let username =
+        document.getElementById("loginUser").value;
+
+    if(username === "") {
+        alert("Enter Username");
+        return;
+    }
+
+    document.getElementById("loginPage").style.display = "none";
+    document.getElementById("dashboard").style.display = "block";
+
+    document.getElementById("welcomeUser").innerText =
+        "Welcome, " + username;
+}
+
+function register() {
+    alert("Account Registered Successfully");
+    showLogin();
+}
+
+function logout() {
+    location.reload();
+}
+
+function showSection(sectionId) {
+
+    const sections = [
+        "homeSection",
+        "transferSection",
+        "paySection",
+        "cardSection"
+    ];
+
+    sections.forEach(section => {
+        document.getElementById(section).style.display = "none";
+    });
+
+    document.getElementById(sectionId).style.display = "block";
+}
+
+/* UAE BANK DETECTION */
+
+function detectBank() {
+
+    let accountNumber =
+        document.getElementById("accountNumber").value;
+
+    let bankName =
+        document.getElementById("bankName");
+
+    if(accountNumber.startsWith("033")) {
+        bankName.innerText = "Bank: Emirates NBD";
+    }
+    else if(accountNumber.startsWith("023")) {
+        bankName.innerText = "Bank: Dubai Islamic Bank";
+    }
+    else if(accountNumber.startsWith("018")) {
+        bankName.innerText = "Bank: ADCB";
+    }
+    else if(accountNumber.startsWith("026")) {
+        bankName.innerText = "Bank: Mashreq Bank";
+    }
+    else if(accountNumber.startsWith("014")) {
+        bankName.innerText = "Bank: First Abu Dhabi Bank";
+    }
+    else {
+        bankName.innerText = "Unknown UAE Bank";
+    }
+}
+async function verifyAccount() {
+
+    let accountNumber =
+        document.getElementById("accountNumber").value;
+
+    const response = await fetch(
+        "https://yourbackend.com/verify-account",
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                accountNumber: accountNumber
+            })
+        }
+    );
+
+    const data = await response.json();
+
+    document.getElementById("bankName").innerText =
+        data.bank;
+
+    document.getElementById("ownerName").innerText =
+        data.owner;
+}
+
+/* TRANSFER FUNCTION */
+
+function transferMoney() {
+
+    let owner =
+        document.getElementById("accountOwner").value;
+
+    let accountNumber =
+        document.getElementById("accountNumber").value;
+
+    if(owner === "" || accountNumber === "") {
+        alert("Please fill all details");
+        return;
+    }
+
+    alert(
+        "Transfer Successful ✅\n\n" +
+        "Receiver: " + owner +
+        "\nAccount: " + accountNumber
+    );
+}
+
+function payBill() {
+    alert("Bill Paid Successfully");
+}
+
+function payCard() {
+
+    let name =
+        document.getElementById("name").value;
+
+    let cardNumber =
+        document.getElementById("cardnumber").value;
+
+    let cvv =
+        document.getElementById("securitycode").value;
+
+    if(name === "" || cardNumber === "" || cvv === "") {
+        alert("Please fill all card details");
+        return;
+    }
+
+    alert("Payment Successful ✅");
+}
+function transferMoney() {
+
+    let country =
+        document.getElementById("country").value;
+
+    let accountNumber =
+        document.getElementById("accountNumber").value;
+
+    let amount =
+        document.getElementById("amount").value;
+
+    let currency =
+        document.getElementById("currency").value;
+
+    if(
+        country === "" ||
+        accountNumber === "" ||
+        amount === ""
+    ) {
+        alert("Fill all transfer details");
+        return;
+    }
+
+    alert(
+        "International Transfer Successful ✅\n\n" +
+        "Country: " + country +
+        "\nAmount: " + amount + " " + currency +
+        "\nAccount: " + accountNumber
+    );
+}const bankItems = document.querySelectorAll(".bank-item");
+
+// ADD CLICK EVENTS
+bankItems.forEach((item, index) => {
+
+    item.addEventListener("click", () => {
+
+        // REMOVE ACTIVE CLASS
+        bankItems.forEach(btn => {
+            btn.classList.remove("active");
+        });
+
+        // ADD ACTIVE CLASS
+        item.classList.add("active");
+
+        // ACTIONS
+        switch(index){
+
+            case 0:
+                alert("Opening My Accounts");
+                break;
+
+            case 1:
+                alert("Opening Quick Transfer");
+                break;
+
+            case 2:
+                alert("Opening e-Deposits");
+                break;
+
+            case 3:
+                alert("Opening Top Up & Recharge");
+                break;
+
+            case 4:
+                alert("Opening Fund Transfer");
+                break;
+
+            case 5:
+                alert("Opening UPI");
+                break;
+
+            case 6:
+                alert("Opening Bill Payments");
+                break;
+
+            case 7:
+                alert("Opening Requests");
+                break;
+
+            case 8:
+                alert("Opening Services");
+                break;
+        }
+
+    });
+
+});
+</script>
 
 </body>
 </html>
