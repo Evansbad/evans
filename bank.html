@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</body>
+</html>
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#0f172a,#111827,#1e293b);
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:white;
+    padding:20px;
+}
+
+.container{
+    width:420px;
+    background:rgba(19,28,47,0.95);
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:24px;
+    padding:30px;
+    box-shadow:
+        0 15px 40px rgba(0,0,0,0.5),
+        0 0 20px rgba(212,175,55,0.1);
+    backdrop-filter:blur(10px);
+}
+
+.logo{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.logo h1{
+    color:#d4af37;
+    font-size:32px;
+    letter-spacing:1px;
+}
+
+.logo p{
+    color:#94a3b8;
+    margin-top:8px;
+    font-size:14px;
+}
+
+input{
+    width:100%;
+    padding:15px;
+    margin-top:14px;
+    border:none;
+    border-radius:14px;
+    background:#1e293b;
+    color:white;
+    font-size:15px;
+    outline:none;
+    transition:0.3s;
+    border:1px solid transparent;
+}
+
+input:focus{
+    border:1px solid #d4af37;
+    box-shadow:0 0 10px rgba(212,175,55,0.4);
+}
+
+button{
+    width:100%;
+    padding:15px;
+    margin-top:18px;
+    border:none;
+    border-radius:14px;
+    background:linear-gradient(135deg,#d4af37,#b68d2a);
+    color:#111827;
+    font-weight:bold;
+    font-size:15px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    transform:translateY(-2px);
+    opacity:0.95;
+    box-shadow:0 10px 20px rgba(212,175,55,0.25);
+}
+
+.switch{
+    text-align:center;
+    margin-top:18px;
+    color:#94a3b8;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.switch:hover{
+    color:#d4af37;
+}
+.bottom-nav{
+    position:fixed;
+    bottom:20px;
+    left:50%;
+    transform:translateX(-50%);
+    width:420px;
+    background:#111827;
+    border-radius:25px;
+    padding:12px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    box-shadow:0 10px 30px rgba(0,0,0,0.5);
+    border:1px solid rgba(255,255,255,0.08);
+}
+
+.nav-box{
+    width:85px;
+    height:75px;
+    background:#1e293b;
+    border-radius:18px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.nav-box:hover{
+    background:#d4af37;
+    transform:translateY(-5px);
+}
+
+.nav-box img{
+    width:28px;
+    height:28px;
+    margin-bottom:6px;
+}
+
+.nav-box span{
+    color:white;
+    font-size:13px;
+    font-weight:600;
+}
+
+.nav-box:hover span{
+    color:black;
+}
+
+h2{
+    margin-bottom:10px;
+    color:#d4af37;
+}
+
+h3{
+    margin-top:15px;
+    margin-bottom:10px;
+}
+
+h5{
+    color:#94a3b8;
+    margin-top:8px;
+}
+
+hr{
+    border:none;
+    height:1px;
+    background:#334155;
+    margin:20px 0;
+}
+
+#homeSection,
+#transferSection,
+#paySection,
+#cardSection{
+    background:linear-gradient(135deg,#1e293b,#0f172a);
+    padding:20px;
+    border-radius:18px;
+    margin-top:20px;
+    animation:fadeIn 0.4s ease;
+}
+
+.code{
+    display:flex;
+    gap:15px;
+}
+
+.balance{
+    font-size:34px;
+    color:#d4af37;
+    font-weight:bold;
+    margin-top:10px;
+}
+
+.logout{
+    background:linear-gradient(135deg,#ef4444,#dc2626);
+    color:white;
+}
+
+.logout:hover{
+    box-shadow:0 10px 20px rgba(239,68,68,0.3);
+}
+.bank-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    width: 100%;
+
+    background:white;
+
+    border-top:1px solid #ddd;
+    border-left:1px solid #ddd;
+}
+
+.bank-item{
+    height:120px;
+  width: 100px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    overflow: hidden;
+
+    gap:12px;
+
+    border-right:1px solid #4a3f3f;
+    border-bottom:1px solid #ddd;
+
+    cursor:pointer;
+}
+
+.bank-item i{
+    font-size:34px;
+    color:#7c3a8c;
+}
+
+.bank-item p{
+    font-size:16px;
+    color:#222;
+    text-align:center;
+    line-height:1.3;
+}
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(10px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- LOGIN -->
+    <div id="loginPage">
+
+        <div class="logo">
+            <h1>Emirate Capital</h1>
+            <p>Demo Banking Interface</p>
+        </div>
+
+        <input type="text" id="loginUser" placeholder="Username">
+        <input type="password" id="loginPass" placeholder="Password">
+
+        <button onclick="login()">Login</button>
+
+        <div class="switch" onclick="showRegister()">
+            No account? Register
+        </div>
+
+    </div>
+
+    <!-- REGISTER -->
+    <div id="registerPage" style="display:none;">
+
+        <div class="logo">
+            <h1>Create Account</h1>
+            <p>Register Demo User</p>
+        </div>
+
+        <input type="text" id="regUser" placeholder="Create Username">
+        <input type="password" id="regPass" placeholder="Create Password">
+
+        <button onclick="register()">Register</button>
+
+        <div class="switch" onclick="showLogin()">
+            Already have an account? Login
+        </div>
+
+    </div>
+
+     <div id="dashboard" style="display:none;">
+
+    <h2 id="welcomeUser"></h2>
+
+    <h3>Balance: AED<span id="balance">183,625,000.00</span></h3>
+    <h5>exchange rate <Span> id=""></i> $50000000</Span></h5>
+
+    <hr>
+
+   <div class="bottom-nav">
+
+    <div class="nav-box" onclick="showSection('homeSection')">
+        <img src="https://cdn-icons-png.flaticon.com/512/1946/1946488.png">
+        <span>Home</span>
+    </div>
+
+    <div class="nav-box" onclick="showSection('transferSection')">
+        <img src="https://cdn-icons-png.flaticon.com/512/9131/9131529.png">
+        <span>Transfer</span>
+    </div>
+
+    <div class="nav-box" onclick="showSection('paySection')">
+        <img src="https://cdn-icons-png.flaticon.com/512/2489/2489756.png">
+        <span>Pay Bill</span>
+    </div>
+
+    <div class="nav-box" onclick="showSection('cardSection')">
+        <img src="https://cdn-icons-png.flaticon.com/512/179/179457.png">
+        <span>Card</span>
+    </div>
+
+</div>
+
+    
+
+    <hr>
+
+    <!-- HOME SECTION -->
+    <div id="homeSection">
+
+        <h3>Home</h3>
+
+        <p>Welcome to your banking dashboard.</p>
+
+        <div class="we">
+            <div class="bank-grid">
+      <link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<div class="bank-grid">
+
+    <div class="bank-item">
+        <i class="fa-regular fa-user"></i>
+        <p>My Accounts</p>
+    </div>
+
+    <div class="bank-item">
+        <i class="fa-solid fa-indian-rupee-sign"></i>
+        <p>Quick Transfer</p>
+    </div>
+
+    <div class="bank-item">
+        <i class="fa-solid fa-sack-dollar"></i>
+        <p>e-Deposits</p>
+    </div>
+
+    <div class="bank-item">
+        <i class="fa-solid fa-mobile-screen-button"></i>
+        <p>Top Up<br>& Recharge</p>
+    </div>
+
+    <div class="bank-item">
+        <i class="fa-solid fa-arrows-rotate"></i>
+        <p>Fund Transfer</p>
+    </div>
+
+    <div class="bank-item">
+        <i class="fa-solid fa-mobile"></i>
+        <p>UPI</p>
+    </div>
+
+    <div class="bank-item">
+        <i class="fa-regular fa-credit-card"></i>
+        <p>Bill Payments</p>
+    </div>
+
+    <div class="bank-item">
+        <i class="fa-regular fa-note-sticky"></i>
+        <p>Requests</p>
+    </div>
+
+    <div class="bank-item">
+        <i class="fa-solid fa-briefcase"></i>
+        <p>Services</p>
+    </div>
+
+</div>
+</div>
+
+        </div>
+
+    </div>
+
+    <!-- TRANSFER SECTION -->
+    <div id="transferSection" style="display:none;">
+
+        <h3>Transfer Money</h3>
+
+        <input type="text" id="AccountN0:"
+            placeholder="AccountNo:">
+
+        <br><br>
+        <input type="text"id="bankname"placeholder="Bankname">
+
+        <input type="number" id="amount"
+            
+>
+
+<select id="currency">
+    <option>AED</option>
+    <option>USD</option>
+    <option>EUR</option>
+    <option>GBP</option>
+    <option>NGN</option>
+</select>
+
+<p id="bankName"></p>
+
+<button onclick="transferMoney()">
+    Send Money
+</button>
+        
+
+    </div>
+
+    
+    <div id="paySection" style="display:none;">
+
+        <h3>Pay Bills</h3>
+
+        <input type="text" id="billName"
+            placeholder="Bill Name">
+
+        <br><br>
+
+        <input type="number" id="billAmount"
+            placeholder="Amount">
+
+        <br><br>
+
+        <button onclick="payBill()">
+            Pay Bill
+        </button>
+
+    </div>
+
+    <!-- CARD SECTION -->
+    <div id="cardSection" style="display:none;">
+
+        <h3>My Card</h3>
+       <input type="text" id="name"placeholder="Name">
+       
+       <input type="number"id="cardnumber"placeholder="cardnumber">
+        <div class="code">
+       <input type="date"id="expired date"placeholder="expirydate">
+       
+       <input type="number2"id="securitycode"placeholder="securitycode">
+         </div>
+        
+
+         <button class="btn" onclick="payCard()">
+    Pay
+</button>
+       
+        
+
+        
+
+    </div>
+
+</div>
+     
+
+        <button class="logout" onclick="logout()">
+            Logout
+        </button>
+
+    </div>
+
+<script src="bank.js"></script>
+
+</body>
+</html>
