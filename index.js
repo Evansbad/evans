@@ -1,0 +1,1482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Emirate Capital</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+/* RESET */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:#0f172a;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    padding:20px;
+}
+
+/* PHONE FRAME */
+.phone{
+    width:390px;
+    height:844px;
+    background:#fff;
+    border-radius:40px;
+    overflow:hidden;
+    position:relative;
+    box-shadow:0 20px 60px rgba(0,0,0,0.35);
+}
+
+/* TOP NOTCH */
+.top-notch{
+    width:160px;
+    height:30px;
+    background:#000;
+    border-radius:0 0 20px 20px;
+    position:absolute;
+    top:0;
+    left:50%;
+    transform:translateX(-50%);
+    z-index:100;
+}
+
+/* APP */
+.app{
+    padding:80px 22px 100px;
+    height:100%;
+    overflow-y:auto;
+}
+
+/* HIDDEN */
+.hidden{
+    display:none;
+}
+
+/* LOGO */
+.logo{
+    text-align:center;
+    margin-bottom:35px;
+}
+
+.logo h1{
+    font-size:32px;
+    color:#111827;
+    margin-bottom:8px;
+}
+
+.logo p{
+    color:#6b7280;
+    font-size:15px;
+}
+
+/* INPUTS */
+input,
+select{
+    width:100%;
+    padding:15px;
+    margin-bottom:16px;
+    border:none;
+    border-radius:14px;
+    background:#f1f5f9;
+    font-size:15px;
+    outline:none;
+    transition:0.3s;
+}
+
+input:focus,
+select:focus{
+    background:#e2e8f0;
+}
+
+/* BUTTONS */
+button{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:14px;
+    background:#111827;
+    color:#fff;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    background:#1e293b;
+}
+
+/* SWITCH */
+.switch{
+    margin-top:18px;
+    text-align:center;
+    color:#2563eb;
+    cursor:pointer;
+    font-size:14px;
+}
+
+/* HEADER */
+.header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:25px;
+    position:relative;
+}
+
+/* PROFILE IMAGE */
+.profile-image-box{
+    width:65px;
+    height:65px;
+    border-radius:50%;
+    overflow:hidden;
+    position:relative;
+    cursor:pointer;
+    background:#e5e7eb;
+    flex-shrink:0;
+}
+
+.profile-image-box img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.default-profile{
+    width:100%;
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:28px;
+    color:#374151;
+}
+
+.upload-overlay{
+    position:absolute;
+    bottom:0;
+    width:100%;
+    background:rgba(0,0,0,0.55);
+    color:#fff;
+    text-align:center;
+    padding:4px 0;
+    font-size:12px;
+}
+/* HEADER */
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+}
+
+/* SETTINGS */
+.settings-container{
+    position:relative;
+}
+
+/* SETTINGS BUTTON */
+.settings-btn{
+    width:45px;
+    height:45px;
+    border-radius:14px;
+    background:#f1f5f9;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.settings-btn:hover{
+    background:#e2e8f0;
+}
+
+.settings-btn i{
+    font-size:18px;
+    color:#111827;
+}
+
+/* SETTINGS MENU */
+.settings-menu{
+    position:absolute;
+    top:55px;
+    right:0;
+    width:240px;
+    background:#fff;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 15px 35px rgba(0,0,0,0.15);
+    z-index:100;
+}
+
+/* MENU ITEMS */
+.menu-item{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:16px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.menu-item:hover{
+    background:#f8fafc;
+}
+
+.menu-item i{
+    width:20px;
+    color:#111827;
+}
+
+.menu-item span{
+    color:#111827;
+    font-size:14px;
+}
+
+/* LOGOUT */
+.logout{
+    border-top:1px solid #e5e7eb;
+    color:red;
+}
+
+/* HIDDEN */
+.hidden{
+    display:none;
+}
+
+/* BALANCE CARD */
+.balance-card{
+    background:linear-gradient(135deg,#111827,#1e3a8a);
+    color:#fff;
+    border-radius:24px;
+    padding:25px;
+    margin-bottom:25px;
+}
+
+.card-top{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:18px;
+    font-size:14px;
+    opacity:0.8;
+}
+
+.balance{
+    font-size:32px;
+    font-weight:bold;
+    margin-bottom:12px;
+}
+
+.growth{
+    color:#86efac;
+    font-size:14px;
+}
+
+/* QUICK ACTIONS */
+.quick-actions{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:28px;
+}
+
+.quick-btn{
+    width:30%;
+    background:#f8fafc;
+    padding:18px 10px;
+    border-radius:18px;
+    text-align:center;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.quick-btn:hover{
+    background:#e2e8f0;
+}
+
+.quick-btn i{
+    font-size:24px;
+    color:#2563eb;
+    margin-bottom:10px;
+}
+
+.quick-btn p{
+    font-size:14px;
+    color:#111827;
+}
+
+/* SECTION TITLE */
+.section-title{
+    font-size:18px;
+    font-weight:600;
+    margin-bottom:18px;
+    color:#111827;
+}
+
+/* TRANSACTIONS */
+.menu{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+}
+
+.transaction{
+    background:#f8fafc;
+    padding:18px;
+    border-radius:18px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.transaction p{
+    color:#111827;
+    font-weight:500;
+}
+
+.transaction span{
+    font-weight:bold;
+}
+
+/* FORM SECTION */
+.form-section{
+    margin-top:25px;
+}
+
+/* CODE INPUTS */
+.code{
+    display:flex;
+    gap:12px;
+}
+
+.code input{
+    flex:1;
+}
+
+/* BOTTOM NAV */
+.bottom-nav{
+    position:absolute;
+    bottom:0;
+    width:100%;
+    background:#fff;
+    border-top:1px solid #e5e7eb;
+    display:flex;
+    justify-content:space-around;
+    padding:16px 0;
+}
+
+.nav-item{
+    width:52px;
+    height:52px;
+    border-radius:16px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.nav-item i{
+    font-size:22px;
+    color:#64748b;
+}
+
+.nav-item.active{
+    background:#111827;
+}
+
+.nav-item.active i{
+    color:#fff;
+}
+
+/* SCROLLBAR */
+.app::-webkit-scrollbar{
+    width:4px;
+}
+
+.app::-webkit-scrollbar-thumb{
+    background:#cbd5e1;
+    border-radius:10px;
+}
+
+/* RESPONSIVE */
+@media(max-width:420px){
+
+    body{
+        padding:0;
+    }
+
+    .phone{
+        width:100%;
+        height:100vh;
+        border-radius:0;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- REPLACE YOUR BODY WITH THIS CLEAN ARRANGED VERSION -->
+
+<body>
+
+<div class="phone">
+
+    <div class="top-notch"></div>
+
+    <!-- LOGIN PAGE -->
+    <div id="loginPage" class="app">
+
+        <div class="logo">
+            <h1>Emirate Capital</h1>
+            <p>Demo Banking Interface</p>
+        </div>
+
+        <input type="text"
+        id="loginUser"
+        placeholder="Username">
+
+        <input type="password"
+        id="loginPass"
+        placeholder="Password">
+
+        <button onclick="login()">
+            Login
+        </button>
+
+        <div class="switch"
+        onclick="showRegister()">
+            No account? Register
+        </div>
+
+    </div>
+
+    <!-- REGISTER PAGE -->
+    <div id="registerPage"
+    class="app hidden">
+
+        <div class="logo">
+            <h1>Create Account</h1>
+        </div>
+
+        <input type="text"
+        id="registerUser"
+        placeholder="Username">
+
+        <input type="email"
+        id="registerEmail"
+        placeholder="Email">
+
+        <input type="tel"
+        id="registerPhone"
+        placeholder="Phone Number">
+
+        <input type="password"
+        id="registerPass"
+        placeholder="Password">
+
+        <button onclick="register()">
+            Register
+        </button>
+
+        <div class="switch"
+        onclick="showLogin()">
+            Already have account? Login
+        </div>
+
+    </div>
+
+    <!-- DASHBOARD -->
+    <div id="dashboard"
+    class="hidden">
+
+        <div class="app">
+
+            <div id="homeSection">
+
+    <!-- HEADER -->
+    <div class="header">
+    
+
+    <!-- HIDDEN FILE INPUT -->
+    <input type="file"
+    id="profileInput"
+    accept="image/*"
+    hidden>
+
+    
+    <label for="profileInput"
+    class="profile-image-box">
+
+        <img
+        id="profileImage"
+        src="">
+
+        <!-- DEFAULT DARK ICON -->
+        <div class="default-profile"
+        id="defaultProfile">
+
+            <i class="fa-solid fa-user"></i>
+
+        </div>
+
+        
+        <div class="upload-overlay">
+            <i class="fa-solid fa-camera"></i>
+        </div>
+
+    </label>
+
+    <div>
+        <h2 id="welcomeUser">
+            Hi, User!
+        </h2>
+
+        <p style="color:#666;">
+            Welcome back
+        </p>
+    </div>
+
+         <!-- SETTINGS -->
+    <div class="settings-container">
+
+        <!-- SETTINGS ICON -->
+        <div class="settings-btn"
+        onclick="toggleSettings()">
+
+            <i class="fa-solid fa-gear"></i>
+
+        </div>
+
+        <!-- SETTINGS MENU -->
+        <div class="settings-menu hidden"
+        id="settingsMenu">
+
+            <div class="menu-item"
+            onclick="editProfile()">
+
+                <i class="fa-solid fa-user"></i>
+                <span>Edit Profile</span>
+
+            </div>
+
+            <div class="menu-item"
+            onclick="changeEmail()">
+
+                <i class="fa-solid fa-envelope"></i>
+                <span>Change Email</span>
+
+            </div>
+
+            <div class="menu-item"
+            onclick="upgradeAccount()">
+
+                <i class="fa-solid fa-crown"></i>
+                <span>Upgrade Account</span>
+
+            </div>
+
+            <div class="menu-item"
+            onclick="showDevices()">
+
+                <i class="fa-solid fa-mobile-screen"></i>
+                <span>Logged-in Devices</span>
+
+            </div>
+
+            <div class="menu-item"
+            onclick="callSupport()">
+
+                <i class="fa-solid fa-headset"></i>
+                <span>Call Support</span>
+
+            </div>
+
+            <div class="menu-item logout"
+            onclick="logout()">
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span>Logout</span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+    <!-- BALANCE -->
+    <div class="balance-card">
+
+        <div class="card-top">
+
+            <span>Total Balance</span>
+
+            <span id="todayDate"></span>
+
+        </div>
+
+        <div class="balance">
+            AED 183,625,000
+        </div>
+        <h4>Exchange Rate = 50,000,000</h4>
+
+        <div class="growth">
+            +4.12% this month
+        </div>
+
+    </div>
+
+    <!-- QUICK ACTIONS -->
+<div class="quick-actions">
+
+    <!-- TRANSFER -->
+    <div class="quick-btn"
+    onclick="showSection('transferSection')">
+
+        <i class="fa-solid fa-right-left"></i>
+        <p>Transfer</p>
+
+    </div>
+     <div class="quick-btn"
+        onclick="showSection('paySection')">
+
+            <i class="fa-solid fa-file-invoice"></i>
+
+            <p>Bills</p>
+
+        </div>
+
+        <div class="quick-btn"
+        onclick="showSection('cardSection')">
+
+            <i class="fa-solid fa-credit-card"></i>
+
+            <p>Card</p>
+
+        </div>
+
+    </div>
+
+    <!-- RECENT TRANSACTIONS -->
+    <div class="section-title">
+        Recent Transactions
+    </div>
+
+    <div class="menu"
+    id="transactionContainer">
+
+        <div class="transaction">
+            <p>Amazon Purchase</p>
+            <span>- AED 1,250</span>
+        </div>
+
+        <div class="transaction">
+            <p>Salary Credit</p>
+            <span>+ AED 25,000</span>
+        </div>
+
+        <div class="transaction">
+            <p>Netflix Subscription</p>
+            <span>- AED 45</span>
+        </div>
+
+    </div>
+
+</div>
+
+            <!-- TRANSFER PAGE -->
+            <div id="transferSection"
+            class="hidden">
+
+                <h2 style="color:#111;">
+                    Transfer Money
+                </h2>
+
+                <div class="form-section">
+
+                    <input type="text"
+                    id="accountNo"
+                    placeholder="Account Number">
+
+                    <input type="text"
+                    id="bankName"
+                    placeholder="Bank Name">
+
+                    <input type="number"
+                    id="amount"
+                    placeholder="Amount">
+
+                    <select id="currency">
+
+                        <option>AED</option>
+                        <option>USD</option>
+                        <option>EUR</option>
+                        <option>GBP</option>
+                        <option>NGN</option>
+
+                    </select>
+
+                    <button onclick="transferMoney()">
+                        Send Money
+                    </button>
+
+                </div>
+
+            </div>
+            
+
+            <!-- BILL PAGE -->
+            <div id="paySection"
+            class="hidden">
+
+                <h2 style="color:#111;">
+                    Pay Bills
+                </h2>
+
+                <input type="text"
+                id="billName"
+                placeholder="Bill Name">
+
+                <input type="number"
+                id="billAmount"
+                placeholder="Amount">
+
+                <button onclick="payBill()">
+                    Pay Bill
+                </button>
+
+            </div>
+
+            <!-- CARD PAGE -->
+            <div id="cardSection"
+            class="hidden">
+
+                <h2 style="color:#111;">
+                    My Card
+                </h2>
+
+                <input type="text"
+                id="cardName"
+                placeholder="Cardholder Name">
+
+                <input type="text"
+                id="cardNumber"
+                maxlength="19"
+                placeholder="1234 5678 9012 3456">
+
+                <div class="code">
+
+                    <input type="month"
+                    id="expiryDate">
+
+                    <input type="number"
+                    id="securityCode"
+                    placeholder="CVV">
+
+                </div>
+
+                <button onclick="payCard()">
+                    Pay
+                </button>
+
+            </div>
+ <!-- BOTTOM NAV -->
+        <div class="bottom-nav">
+
+            <div class="nav-item active"
+            onclick="showSection('homeSection',this)">
+
+                <i class="fa-solid fa-house"></i>
+
+            </div>
+
+            <div class="nav-item"
+            onclick="showSection('transferSection',this)">
+
+                <i class="fa-solid fa-right-left"></i>
+
+            </div>
+
+            <div class="nav-item"
+            onclick="showSection('paySection',this)">
+
+                <i class="fa-solid fa-wallet"></i>
+
+            </div>
+
+            <div class="nav-item"
+            onclick="showSection('cardSection',this)">
+
+                <i class="fa-solid fa-credit-card"></i>
+
+            </div>
+        </div>
+
+       
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+<script>
+
+/* =========================
+   GLOBAL VARIABLES
+========================= */
+
+let balance = 183625000;
+
+const sections = [
+    "homeSection",
+    "transferSection",
+    "paySection",
+    "cardSection"
+];
+
+
+
+const profileInput =
+document.getElementById("profileInput");
+
+const profileImage =
+document.getElementById("profileImage");
+
+
+
+profileInput.addEventListener("change",function(){
+
+    const file=this.files[0];
+
+    if(file){
+
+        const reader=new FileReader();
+
+        reader.onload=function(e){
+
+            profileImage.src=e.target.result;
+        };
+
+        reader.readAsDataURL(file);
+    }
+
+});
+
+const container = $("transactionContainer");
+
+document.addEventListener("DOMContentLoaded", () => {
+
+   // ALL YOUR JS HERE
+
+});
+
+/* =========================
+   HELPERS
+========================= */
+function toggleMenu() {
+    const menu = document.getElementById("settingsMenu");
+
+    if(menu.style.display === "block"){
+        menu.style.display = "none";
+    } else {
+        menu.style.display = "block";
+    }
+}
+
+function addTransaction(title, amount, positive=true){
+
+   const container = $("transactionContainer");
+
+    const transaction =
+    document.createElement("div");
+
+    transaction.className = "transaction";
+
+    transaction.innerHTML = `
+        <p>${title}</p>
+        <span style="color:${positive ? '#16a34a' : '#dc2626'}">
+            ${positive ? '+' : '-'} AED ${amount.toLocaleString()}
+        </span>
+    `;
+
+    container.prepend(transaction);
+
+    localStorage.setItem(
+        "transactions",
+        container.innerHTML
+    );
+}
+
+function $(id){
+    return document.getElementById(id);
+}
+
+function show(id){
+    $(id).classList.remove("hidden");
+}
+
+function hide(id){
+    $(id).classList.add("hidden");
+}
+
+function clearInputs(ids){
+
+    ids.forEach(id=>{
+        $(id).value = "";
+    });
+}
+
+function updateBalance(){
+
+    document.querySelector(".balance").innerHTML =
+    "AED " + balance.toLocaleString();
+}
+
+function addTransactions(title, amount, positive=true){
+
+    const container =
+    document.querySelectorAll(".menu")[7];
+
+    const transaction =
+    document.createElement("div");
+
+    transaction.className = "transaction";
+
+    transaction.innerHTML = `
+        <p>${title}</p>
+        <span style="color:${positive ? '#16a34a' : '#dc2626'}">
+            ${positive ? '+' : '-'} AED ${amount.toLocaleString()}
+        </span>
+    `;
+
+    container.prepend(transaction);
+}
+
+/* =========================
+   PAGE SWITCHING
+========================= */
+
+function showRegister(){
+
+    hide("loginPage");
+    show("registerPage");
+}
+
+function showLogin(){
+
+    hide("registerPage");
+    show("loginPage");
+}
+
+function showSection(sectionId, clicked=null){
+
+    sections.forEach(section=>{
+        hide(section);
+    });
+
+    show(sectionId);
+
+    document
+    .querySelectorAll(".nav-item")
+    .forEach(nav=>{
+        nav.classList.remove("active");
+    });
+
+    if(clicked){
+        clicked.classList.add("active");
+    }
+}
+
+/* =========================
+   AUTH SYSTEM
+========================= */
+
+function register(){
+
+    const user = $("registerUser").value.trim();
+    const email = $("registerEmail").value.trim();
+    const phone = $("registerPhone").value.trim();
+    const pass = $("registerPass").value.trim();
+
+    if(!user || !email || !phone || !pass){
+
+        alert("Please fill all fields");
+        return;
+    }
+
+    const userData = {
+        username:user,
+        email:email,
+        phone:phone,
+        password:pass
+    };
+
+    localStorage.setItem(
+        "emirateUser",
+        JSON.stringify(userData)
+    );
+
+    alert("Registration Successful");
+
+    clearInputs([
+        "registerUser",
+        "registerEmail",
+        "registerPhone",
+        "registerPass"
+    ]);
+
+    showLogin();
+}
+
+function login(){
+
+    const username =
+    $("loginUser").value.trim();
+
+    const password =
+    $("loginPass").value.trim();
+
+    if(!username || !password){
+
+        alert("Enter username and password");
+        return;
+    }
+
+    const storedUser =
+    JSON.parse(localStorage.getItem("emirateUser"));
+
+    if(!storedUser){
+
+        alert("No registered account found");
+        return;
+    }
+
+    if(
+        username !== storedUser.username ||
+        password !== storedUser.password
+    ){
+
+        alert("Invalid credentials");
+        return;
+    }
+
+    hide("loginPage");
+    show("dashboard");
+
+    $("welcomeUser").innerHTML =
+    "Hi, " + username + "!";
+}
+/* =========================
+   SETTINGS MENU VALIDATION
+========================= */
+
+function toggleSettings(){
+
+    const menu =
+    document.getElementById("settingsMenu");
+
+    // VALIDATE MENU EXIST
+    if(!menu){
+
+        alert("Settings menu not found");
+
+        return;
+    }
+
+    // TOGGLE MENU
+    menu.classList.toggle("hidden");
+}
+
+
+/* =========================
+   EDIT PROFILE
+========================= */
+
+function editProfile(){
+
+    let currentName =
+    document.getElementById("welcomeUser");
+
+    // VALIDATE USER
+    if(!currentName){
+
+        alert("User profile not found");
+
+        return;
+    }
+
+    let newName = prompt(
+        "Enter new username:"
+    );
+
+    // CANCEL
+    if(newName === null){
+        return;
+    }
+
+    newName = newName.trim();
+
+    // EMPTY VALIDATION
+    if(newName === ""){
+
+        alert("Username cannot be empty");
+
+        return;
+    }
+
+    // LENGTH VALIDATION
+    if(newName.length < 3){
+
+        alert(
+            "Username must be at least 3 characters"
+        );
+
+        return;
+    }
+
+    // SUCCESS
+    currentName.innerText =
+    "Hi, " + newName + "!";
+
+    alert("Profile updated successfully");
+}
+
+
+/* =========================
+   CHANGE EMAIL
+========================= */
+
+function changeEmail(){
+
+    let newEmail = prompt(
+        "Enter new email:"
+    );
+
+    if(newEmail === null){
+        return;
+    }
+
+    newEmail = newEmail.trim();
+
+    // EMPTY
+    if(newEmail === ""){
+
+        alert("Email cannot be empty");
+
+        return;
+    }
+
+    // EMAIL VALIDATION
+    let emailPattern =
+    /^[^ ]+@[^ ]+\.[a-z]{2,}$/;
+
+    if(!emailPattern.test(newEmail)){
+
+        alert("Invalid email address");
+
+        return;
+    }
+
+    alert("Email changed successfully");
+}
+
+
+/* =========================
+   UPGRADE ACCOUNT
+========================= */
+
+function upgradeAccount(){
+
+    let upgrade =
+    confirm(
+        "Do you want to upgrade your account?"
+    );
+
+    if(!upgrade){
+
+        alert("Upgrade cancelled");
+
+        return;
+    }
+
+    alert("Account upgraded successfully");
+}
+
+
+/* =========================
+   LOGGED-IN DEVICES
+========================= */
+
+function showDevices(){
+
+    let devices = [
+
+        "iPhone 15 Pro",
+        "Windows Laptop",
+        "Samsung Tablet"
+
+    ];
+
+    // VALIDATION
+    if(devices.length === 0){
+
+        alert("No logged-in devices");
+
+        return;
+    }
+
+    alert(
+        "Logged-in Devices:\n\n" +
+        devices.join("\n")
+    );
+}
+
+
+/* =========================
+   CALL SUPPORT
+========================= */
+
+function callSupport(){
+
+    let supportNumber =
+    "+9718005000";
+
+    // VALIDATE NUMBER
+    if(supportNumber === ""){
+
+        alert("Support unavailable");
+
+        return;
+    }
+
+    let call =
+    confirm(
+        "Call Support?\n" +
+        supportNumber
+    );
+
+    if(call){
+
+        window.location.href =
+        "tel:" + supportNumber;
+    }
+}
+
+
+/* =========================
+   LOGOUT
+========================= */
+
+function logout(){
+
+    let confirmLogout =
+    confirm(
+        "Are you sure you want to logout?"
+    );
+
+    if(!confirmLogout){
+        return;
+    }
+
+    // VALIDATE ELEMENTS
+    let dashboard =
+    document.getElementById("dashboard");
+
+    let loginPage =
+    document.getElementById("loginPage");
+
+    if(!dashboard || !loginPage){
+
+        alert("Logout failed");
+
+        return;
+    }
+
+    dashboard.classList.add("hidden");
+
+    loginPage.classList.remove("hidden");
+
+    document
+    .getElementById("settingsMenu")
+    .classList.add("hidden");
+
+    alert("Logged out successfully");
+}
+/* =========================
+   TRANSFER
+========================= */
+
+function transferMoney(){
+
+    const account =
+    $("accountNo").value.trim();
+
+    const bank =
+    $("bankName").value.trim();
+
+    const amount =
+    parseFloat($("amount").value);
+
+    const currency =
+    $("currency").value;
+
+    if(!account || !bank || !amount){
+
+        alert("Complete transfer fields");
+        return;
+    }
+
+    if(amount > balance){
+
+        alert("Insufficient balance");
+        return;
+    }
+
+    balance -= amount;
+
+    updateBalance();
+
+    addTransaction(
+        "Transfer to " + bank,
+        amount,
+        false
+    );
+
+    alert(
+        currency +
+        " " +
+        amount.toLocaleString() +
+        " sent successfully"
+    );
+
+    clearInputs([
+        "accountNo",
+        "bankName",
+        "amount"
+    ]);
+}
+
+/* =========================
+   BILL PAYMENT
+========================= */
+function toggleWithdrawForm(){
+
+    const form =
+    document.getElementById("withdrawForm");
+
+    form.classList.toggle("hidden");
+}
+
+function payBill(){
+
+    const bill =
+    $("billName").value.trim();
+
+    const amount =
+    parseFloat($("billAmount").value);
+
+    if(!bill || !amount){
+
+        alert("Complete bill details");
+        return;
+    }
+
+    if(amount > balance){
+
+        alert("Insufficient balance");
+        return;
+    }
+
+    balance -= amount;
+
+    updateBalance();
+
+    addTransaction(
+        bill + " Bill",
+        amount,
+        false
+    );
+
+    alert("Bill Paid Successfully");
+
+    clearInputs([
+        "billName",
+        "billAmount"
+    ]);
+}
+
+/* =========================
+   CARD PAYMENT
+========================= */
+
+function payCard(){
+
+    const name =
+    $("cardName").value.trim();
+
+    const number =
+    $("cardNumber").value.trim();
+
+    const cvv =
+    $("securityCode").value.trim();
+
+    if(!name || !number || !cvv){
+
+        alert("Complete card details");
+        return;
+    }
+
+    alert("Card Payment Successful");
+
+    clearInputs([
+        "cardName",
+        "cardNumber",
+        "securityCode"
+    ]);
+}
+
+/* =========================
+   CARD FORMATTER
+========================= */
+
+$("cardNumber")
+.addEventListener("input", function(e){
+
+    let value =
+    e.target.value
+    .replace(/\s/g,'')
+    .replace(/[^0-9]/gi,'');
+
+    let formatted =
+    value.match(/.{1,4}/g);
+
+    e.target.value =
+    formatted ? formatted.join(' ') : '';
+});
+
+/* =========================
+   INITIALIZE
+========================= */
+
+updateBalance();
+
+</script>
+</body>
+</html>
