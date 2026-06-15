@@ -3,14 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Emirate Capital</title>
-
 <link rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
+</head>
 <style>
-/* RESET */
 *{
     margin:0;
     padding:0;
@@ -52,9 +48,12 @@ body{
 
 /* APP */
 .app{
-    padding:80px 22px 100px;
+    padding:80px 22px 120px;
     height:100%;
     overflow-y:auto;
+    overflow-x:hidden;
+    scroll-behavior:smooth;
+    -webkit-overflow-scrolling:touch;
 }
 
 /* HIDDEN */
@@ -116,6 +115,8 @@ button:hover{
     background:#1e293b;
 }
 
+
+
 /* SWITCH */
 .switch{
     margin-top:18px;
@@ -134,7 +135,7 @@ button:hover{
     position:relative;
 }
 
-/* PROFILE IMAGE */
+
 .profile-image-box{
     width:65px;
     height:65px;
@@ -172,7 +173,7 @@ button:hover{
     padding:4px 0;
     font-size:12px;
 }
-/* HEADER */
+
 .header{
     display:flex;
     justify-content:space-between;
@@ -180,12 +181,12 @@ button:hover{
     margin-bottom:25px;
 }
 
-/* SETTINGS */
+
 .settings-container{
     position:relative;
 }
 
-/* SETTINGS BUTTON */
+
 .settings-btn{
     width:45px;
     height:45px;
@@ -244,7 +245,7 @@ button:hover{
     font-size:14px;
 }
 
-/* LOGOUT */
+
 .logout{
     border-top:1px solid #e5e7eb;
     color:red;
@@ -255,7 +256,7 @@ button:hover{
     display:none;
 }
 
-/* BALANCE CARD */
+
 .balance-card{
     background:linear-gradient(135deg,#111827,#1e3a8a);
     color:#fff;
@@ -283,7 +284,7 @@ button:hover{
     font-size:14px;
 }
 
-/* QUICK ACTIONS */
+
 .quick-actions{
     display:flex;
     justify-content:space-between;
@@ -323,7 +324,7 @@ button:hover{
     color:#111827;
 }
 
-/* TRANSACTIONS */
+
 .menu{
     display:flex;
     flex-direction:column;
@@ -339,6 +340,7 @@ button:hover{
     align-items:center;
 }
 
+
 .transaction p{
     color:#111827;
     font-weight:500;
@@ -348,12 +350,12 @@ button:hover{
     font-weight:bold;
 }
 
-/* FORM SECTION */
+
 .form-section{
     margin-top:25px;
 }
 
-/* CODE INPUTS */
+
 .code{
     display:flex;
     gap:12px;
@@ -363,7 +365,7 @@ button:hover{
     flex:1;
 }
 
-/* BOTTOM NAV */
+
 .bottom-nav{
     position:absolute;
     bottom:0;
@@ -399,7 +401,7 @@ button:hover{
     color:#fff;
 }
 
-/* SCROLLBAR */
+
 .app::-webkit-scrollbar{
     width:4px;
 }
@@ -407,6 +409,7 @@ button:hover{
 .app::-webkit-scrollbar-thumb{
     background:#cbd5e1;
     border-radius:10px;
+
 }
 
 @media screen and (min-width: 1025px){
@@ -423,7 +426,7 @@ button:hover{
     }
 }
 
-/* TABLETS */
+
 @media screen and (max-width: 1024px){
 
     body{
@@ -440,7 +443,7 @@ button:hover{
     }
 }
 
-/* MOBILE */
+
 @media screen and (max-width: 768px){
 
     .app{
@@ -476,7 +479,7 @@ button:hover{
     }
 }
 
-/* SMALL MOBILE */
+
 @media screen and (max-width: 480px){
 
     .app{
@@ -528,7 +531,7 @@ button:hover{
     }
 }
 
-/* EXTRA SMALL DEVICES */
+
 @media screen and (max-width: 360px){
 
     .balance{
@@ -552,7 +555,7 @@ button:hover{
     }
 }
 
-/* LANDSCAPE MODE */
+
 @media screen and (orientation: landscape)
 and (max-height: 500px){
 
@@ -570,14 +573,6 @@ and (max-height: 500px){
 }
 
 </style>
-</head>
-
-<body>
-
-<!-- REPLACE YOUR BODY WITH THIS CLEAN ARRANGED VERSION -->
-
-<body>
-
 <div class="phone">
 
     <div class="top-notch"></div>
@@ -776,14 +771,22 @@ and (max-height: 500px){
         </div>
 
         <div class="balance">
-            AED 183,625,000
-        </div>
-        <h4>Exchange Rate = 50,000,000</h4>
+         AED 0
+      </div>
+      <div class="account-info">
+    
+    </p>
+</div>
+        <h4>
+        Exchange Rate = <span id="exchangeRate">0.00</span>
+      </h4>
 
         <div class="growth">
             +4.12% this month
         </div>
-
+<small>Account Number</small>
+    <p id="accountNumberDisplay">
+        6578&nbsp;9012&nbsp;3456
     </div>
 
     <!-- QUICK ACTIONS -->
@@ -816,28 +819,15 @@ and (max-height: 500px){
         </div>
 
     </div>
+          <div id="transactionContainer" class="menu">
+          <div id="emptyHistory" class="transaction">
+        <p>No transactions yet</p>
+      </div>
 
-    <!-- RECENT TRANSACTIONS -->
-    <div class="section-title">
-        Recent Transactions
-    </div>
 
-    <div class="menu"
-    id="transactionContainer">
+</div>
 
-        <div class="transaction">
-            <p>Amazon Purchase</p>
-            <span>- AED 1,250</span>
-        </div>
-
-        <div class="transaction">
-            <p>Salary Credit</p>
-            <span>+ AED 25,000</span>
-        </div>
-
-        <div class="transaction">
-            <p>Netflix Subscription</p>
-            <span>- AED 45</span>
+    
         </div>
 
     </div>
@@ -876,13 +866,13 @@ and (max-height: 500px){
 
                     </select>
 
-                    <button onclick="transferMoney()">
-                        Send Money
-                    </button>
-
+                    <button id="sendBtn" onclick="transferMoney()">
+                     Send Transaction
+                  </button>
                 </div>
 
             </div>
+            
             
 
             <!-- BILL PAGE -->
@@ -987,7 +977,7 @@ and (max-height: 500px){
    GLOBAL VARIABLES
 ========================= */
 
-let balance = 183625000;
+let balance = 0;
 
 const sections = [
     "homeSection",
@@ -1024,13 +1014,79 @@ profileInput.addEventListener("change",function(){
 
 });
 
-const container = $("transactionContainer");
+
 
 document.addEventListener("DOMContentLoaded", () => {
 
-   // ALL YOUR JS HERE
+
 
 });
+function updateExchangeRate(accountNumber){
+
+    const rateElement = document.getElementById("exchangeRate");
+
+    
+    if(!rateElement){
+        console.error("Exchange rate element not found");
+        return;
+    }
+
+    
+    if(!accountNumber){
+        rateElement.textContent = "0.00";
+        return;
+    }
+
+    accountNumber = accountNumber.trim();
+
+    if(accountNumber.length !== 10){
+        rateElement.textContent = "0.00";
+        return;
+    }
+
+    if(isNaN(accountNumber)){
+        rateElement.textContent = "0.00";
+        return;
+    }
+
+    
+    const rate = exchangeRate[accountNumber];
+
+    // if no match
+    if(!rate){
+        rateElement.textContent = "0.00";
+        return;
+    }
+
+    
+    rateElement.textContent = rate.toFixed(2);
+}
+function  $(id){
+    return document.getElementById(id);
+}
+
+function show(id){
+    $(id).classList.remove("hidden");
+}
+
+function hide(id){
+    $(id).classList.add("hidden");
+}
+
+function clearInputs(ids){
+
+    ids.forEach(id=>{
+        $(id).value = "";
+    });
+}
+
+function updateBalance(){
+
+    document.querySelector(".balance").innerHTML =
+    "AED " + balance.toLocaleString();
+}
+document.getElementById("accountNumberDisplay").textContent =
+storedUser.accountNumber.replace(/(.{4})/g, "$1 ").trim();
 
 /* =========================
    HELPERS
@@ -1069,50 +1125,7 @@ function addTransaction(title, amount, positive=true){
     );
 }
 
-function $(id){
-    return document.getElementById(id);
-}
 
-function show(id){
-    $(id).classList.remove("hidden");
-}
-
-function hide(id){
-    $(id).classList.add("hidden");
-}
-
-function clearInputs(ids){
-
-    ids.forEach(id=>{
-        $(id).value = "";
-    });
-}
-
-function updateBalance(){
-
-    document.querySelector(".balance").innerHTML =
-    "AED " + balance.toLocaleString();
-}
-
-function addTransactions(title, amount, positive=true){
-
-    const container =
-    document.querySelectorAll(".menu")[7];
-
-    const transaction =
-    document.createElement("div");
-
-    transaction.className = "transaction";
-
-    transaction.innerHTML = `
-        <p>${title}</p>
-        <span style="color:${positive ? '#16a34a' : '#dc2626'}">
-            ${positive ? '+' : '-'} AED ${amount.toLocaleString()}
-        </span>
-    `;
-
-    container.prepend(transaction);
-}
 
 /* =========================
    PAGE SWITCHING
@@ -1228,9 +1241,7 @@ function login(){
     $("welcomeUser").innerHTML =
     "Hi, " + username + "!";
 }
-/* =========================
-   SETTINGS MENU VALIDATION
-========================= */
+
 
 function toggleSettings(){
 
@@ -1248,7 +1259,10 @@ function toggleSettings(){
     // TOGGLE MENU
     menu.classList.toggle("hidden");
 }
-
+const exchangeRates = {
+    "1234567890": 3.67,
+    "9876543210": 4.12
+};
 
 /* =========================
    EDIT PROFILE
@@ -1463,64 +1477,51 @@ function logout(){
     .classList.add("hidden");
 
     alert("Logged out successfully");
-}
-/* =========================
-   TRANSFER
-========================= */
+}function transferMoney(){
 
-function transferMoney(){
+    const btn = document.getElementById("sendBtn");
 
-    const account =
-    $("accountNo").value.trim();
+    const account = $("accountNo").value.trim();
+    const bank = $("bankName").value.trim();
+    const amount = parseFloat($("amount").value);
+    const currency = $("currency").value;
 
-    const bank =
-    $("bankName").value.trim();
-
-    const amount =
-    parseFloat($("amount").value);
-
-    const currency =
-    $("currency").value;
-
-    if(!account || !bank || !amount){
-
-        alert("Complete transfer fields");
+    // VALIDATION
+    if(!account || !bank || isNaN(amount) || amount <= 0){
+        alert("Complete transfer fields correctly");
         return;
     }
 
     if(amount > balance){
-
         alert("Insufficient balance");
         return;
     }
 
-    balance -= amount;
+    // disable button (SEND BUTTON BEHAVIOR)
+    btn.disabled = true;
+    btn.textContent = "Processing...";
 
-    updateBalance();
+    setTimeout(() => {
 
-    addTransaction(
-        "Transfer to " + bank,
-        amount,
-        false
-    );
+        balance -= amount;
+        updateBalance();
 
-    alert(
-        currency +
-        " " +
-        amount.toLocaleString() +
-        " sent successfully"
-    );
+        addTransaction(
+            "Transfer to " + bank,
+            amount,
+            false
+        );
 
-    clearInputs([
-        "accountNo",
-        "bankName",
-        "amount"
-    ]);
+        alert(`${currency} ${amount.toLocaleString()} sent successfully`);
+
+        clearInputs(["accountNo", "bankName", "amount"]);
+
+        // restore button
+        btn.disabled = false;
+        btn.textContent = "Send Transaction";
+
+    }, 1200);
 }
-
-/* =========================
-   BILL PAYMENT
-========================= */
 function toggleWithdrawForm(){
 
     const form =
@@ -1567,9 +1568,7 @@ function payBill(){
     ]);
 }
 
-/* =========================
-   CARD PAYMENT
-========================= */
+
 
 function payCard(){
 
@@ -1597,9 +1596,7 @@ function payCard(){
     ]);
 }
 
-/* =========================
-   CARD FORMATTER
-========================= */
+
 
 $("cardNumber")
 .addEventListener("input", function(e){
@@ -1616,11 +1613,12 @@ $("cardNumber")
     formatted ? formatted.join(' ') : '';
 });
 
-/* =========================
-   INITIALIZE
-========================= */
+
 
 updateBalance();
+
+
+
 
 </script>
 </body>
