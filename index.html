@@ -970,6 +970,8 @@ and (max-height: 500px){
 
 </div>
 
+</body>
+<script>
 
 /* =========================
    GLOBAL VARIABLES
@@ -1520,6 +1522,9 @@ function logout(){
 
     }, 1200);
 }
+/* =========================
+   BILL PAYMENT
+========================= */
 function toggleWithdrawForm(){
 
     const form =
@@ -1566,7 +1571,9 @@ function payBill(){
     ]);
 }
 
-
+/* =========================
+   CARD PAYMENT
+========================= */
 
 function payCard(){
 
@@ -1594,7 +1601,9 @@ function payCard(){
     ]);
 }
 
-
+/* =========================
+   CARD FORMATTER
+========================= */
 
 $("cardNumber")
 .addEventListener("input", function(e){
